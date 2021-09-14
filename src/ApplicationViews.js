@@ -1,8 +1,11 @@
 import { Logout } from "./components/Logout";
 
 export const ApplicationViews = () => {
-    return <>
-        <h1>hiiii</h1>
+
+    return (
+    <>
         <Logout />
+        <h1>Landing Site</h1>
     </>
+    )
 }

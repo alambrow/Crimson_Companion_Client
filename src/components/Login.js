@@ -1,21 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
-import { AuthContext } from './providers/AuthProvider';
 
 export const Login = (props) => {
-    // const { login, token, currentUser } = useContext(AuthContext);
 
-    const responseGoogle = (response) => {
-      // login(response.profileObj)
-      localStorage.setItem("crimson_token", 1)
-      props.history.push("/")
-    }
+  const responseGoogle = (response) => {
+    loginWithGoogleCredentials(response)
+    props.history.push("/")
+  }
 
-    const responseGoogle_error = () => {
+  const loginWithGoogleCredentials = (response) => {
+    return fetch(`http://127.0.0.1:8000/login`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(response.profileObj)
+    })
+    .then(res => res.json())
+    .then(data => localStorage.setItem("crimson_token", data[0]))
+  }
+
+  const responseGoogle_error = () => {
       alert('Google could not verify your account.')
     }
 
-    return (
+  return (
       <>  
           <GoogleLogin
           clientId="812910456899-89g2l108boob0jtkn1q3ph5tgs46vbkd.apps.googleusercontent.com"
