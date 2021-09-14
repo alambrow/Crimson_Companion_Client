@@ -1,20 +1,21 @@
 import { GoogleLogout } from 'react-google-login';
+import { useHistory } from 'react-router';
 
-const responseGoogle = (response) => {
-    console.log(response);
+
+export const Logout = (props) => {
+
+const history = useHistory()
+const logoutSuccess = () => {
+    localStorage.removeItem('crimson_token')
+    alert('You have been logged out!')
+    history.push("/login")
   }
 
-const logoutSuccess = () => {
-    alert('You have been logged out!')
-}
-
-export const Logout = () => {
-    return (
+return (
         <GoogleLogout
         clientId="812910456899-89g2l108boob0jtkn1q3ph5tgs46vbkd.apps.googleusercontent.com"
         buttonText="Logout"
         onLogoutSuccess={logoutSuccess}
-        onFailure={responseGoogle}
         >
       </GoogleLogout>
     )
