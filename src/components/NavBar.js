@@ -17,6 +17,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Logout } from './Logout';
 
 const drawerWidth = 240;
@@ -132,12 +136,22 @@ export const NavBar = () => {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button key={'Current Students'}>
+                        <ListItemIcon> <PeopleAltIcon /></ListItemIcon>
+                        <ListItemText primary={'Current Students'} />
+                    </ListItem>
+                    <ListItem button key={'All Essays'}>
+                        <ListItemIcon> <AssignmentIcon /></ListItemIcon>
+                        <ListItemText primary={'All Essays'} />
+                    </ListItem>
+                    <ListItem button key={'Add Students'}>
+                        <ListItemIcon> <PersonAddIcon /></ListItemIcon>
+                        <ListItemText primary={'Add Students'} />
+                    </ListItem>
+                    <ListItem button key={'Add Essay'}>
+                        <ListItemIcon> <AddBoxIcon /></ListItemIcon>
+                        <ListItemText primary={'Add Essay'} />
+                    </ListItem>
                 </List>
                 <Divider />
                 <List>
