@@ -1,8 +1,7 @@
-import { Logout } from "./components/Logout";
 import { Route } from "react-router-dom";
 import { LandingSite } from "./components/LandingSite";
-import { ProfileContext, ProfileProvider } from "./components/providers/ProfileProvider";
-import { NavBar } from "./components/NavBar";
+import { ProfileProvider } from "./components/providers/ProfileProvider";
+import { AllStudents } from "./components/AllStudents";
 
 export const ApplicationViews = () => {
 
@@ -11,6 +10,9 @@ export const ApplicationViews = () => {
         <ProfileProvider>
             <Route exact path="/home">
                 <LandingSite />
+            </Route>
+            <Route exact path="/students">
+                <AllStudents />
             </Route>
         </ProfileProvider>
     </>
