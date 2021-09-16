@@ -1,15 +1,20 @@
-import { Logout } from "./components/Logout";
 import { Route } from "react-router-dom";
+import { LandingSite } from "./components/LandingSite";
+import { ProfileProvider } from "./components/providers/ProfileProvider";
+import { AllStudents } from "./components/AllStudents";
 
 export const ApplicationViews = () => {
 
     return (
     <>
-        <Route exact path="/home">
-            <Logout />
-            <h1>Landing Site</h1>
-        </Route>
-
+        <ProfileProvider>
+            <Route exact path="/home">
+                <LandingSite />
+            </Route>
+            <Route exact path="/students">
+                <AllStudents />
+            </Route>
+        </ProfileProvider>
     </>
     )
 }
