@@ -7,7 +7,6 @@ export const AllStudents = () => {
 
     useEffect(() => {
         getStudents()
-        console.log(students)
     }, [])
 
     const renderStudentItem = student => {
