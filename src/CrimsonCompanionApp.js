@@ -19,7 +19,7 @@ const CrimsonCompanionApp = () => (
         }} />
 
         <Route path="/login" render={Login} />
-        <Route path="/home" render={ApplicationViews}/>
+        <Route path="/" render={ApplicationViews}/>
   </>
 )
 
