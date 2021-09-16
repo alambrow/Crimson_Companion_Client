@@ -13,10 +13,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -104,7 +104,6 @@ export const NavBar = () => {
         setOpen(false);
     };
 
-    console.log(students)
     const history = useHistory()
 
     return (
@@ -189,10 +188,12 @@ export const NavBar = () => {
                 <List>
                     {students.map(student => (
                         <ListItem button key={student.id} onClick={(event) => {
-                            event.preventDefault()
-                            history.push(`/students/${student.id}`)}}>
+                            event.preventDefault();
+                            history.push(`/students/${student.id}`);
+                            setOpen(false);
+                            }}>
                             <ListItemIcon>
-                                <MailIcon />
+                                <PersonIcon />
                             </ListItemIcon>
                             <ListItemText primary={student.full_name} />
                         </ListItem>
