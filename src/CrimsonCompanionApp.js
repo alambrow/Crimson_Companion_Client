@@ -10,8 +10,7 @@ const CrimsonCompanionApp = () => (
       <Route path="/" render={() => {
           if (localStorage.getItem("crimson_token")) {
             return <>
-                <NavBar />
-                <Redirect to="/home" />
+                <Route path="/" render={ApplicationViews}/>
                 </>
           } else {
             return <Redirect to="/login" />
@@ -19,7 +18,7 @@ const CrimsonCompanionApp = () => (
         }} />
 
         <Route path="/login" render={Login} />
-        <Route path="/" render={ApplicationViews}/>
+        
   </>
 )
 
