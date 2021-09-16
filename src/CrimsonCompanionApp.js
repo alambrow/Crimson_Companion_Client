@@ -6,17 +6,16 @@ import { Login } from './components/Login';
 
 const CrimsonCompanionApp = () => (
   <>
-      <Route render={() => {
+      <Route path="/" render={() => {
           if (localStorage.getItem("crimson_token")) {
-            return <>
-              <Route path="/" render={ApplicationViews}/>
-            </>
+            return <Redirect to="/home" />
           } else {
             return <Redirect to="/login" />
           }
         }} />
 
         <Route path="/login" render={Login} />
+        <Route path="/home" render={ApplicationViews}/>
   </>
 )
 

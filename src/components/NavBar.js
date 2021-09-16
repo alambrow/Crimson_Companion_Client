@@ -15,13 +15,13 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Logout } from './Logout';
+import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -96,6 +96,8 @@ export const NavBar = () => {
         setOpen(false);
     };
 
+    const history = useHistory()
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -136,19 +138,31 @@ export const NavBar = () => {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button key={'Current Students'}>
+                    <ListItem button key={'Current Students'} onClick={(event) => {
+                        event.preventDefault()
+                        history.push("/students")
+                    }}>
                         <ListItemIcon> <PeopleAltIcon /></ListItemIcon>
                         <ListItemText primary={'Current Students'} />
                     </ListItem>
-                    <ListItem button key={'All Essays'}>
+                    <ListItem button key={'All Essays'} onClick={(event) => {
+                        event.preventDefault()
+                        history.push("/essays")
+                    }}>
                         <ListItemIcon> <AssignmentIcon /></ListItemIcon>
                         <ListItemText primary={'All Essays'} />
                     </ListItem>
-                    <ListItem button key={'Add Students'}>
+                    <ListItem button key={'Add Students'} onClick={(event) => {
+                        event.preventDefault()
+                        history.push("/new_student")
+                    }}>
                         <ListItemIcon> <PersonAddIcon /></ListItemIcon>
                         <ListItemText primary={'Add Students'} />
                     </ListItem>
-                    <ListItem button key={'Add Essay'}>
+                    <ListItem button key={'Add Essay'} onClick={(event) => {
+                        event.preventDefault()
+                        history.push("/new_essay")
+                    }}>
                         <ListItemIcon> <AddBoxIcon /></ListItemIcon>
                         <ListItemText primary={'Add Essay'} />
                     </ListItem>
