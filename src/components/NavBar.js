@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -23,6 +23,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Logout } from './Logout';
 import { useHistory } from 'react-router';
+import { StudentContext } from './providers/StudentProvider';
 
 const drawerWidth = 240;
 
@@ -87,7 +88,13 @@ const useStyles = makeStyles((theme) => ({
 export const NavBar = () => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const { students, getStudents } = useContext(StudentContext)
+
+    useEffect(() => {
+        getStudents()
+        console.log(students)
+    }, [])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -97,6 +104,7 @@ export const NavBar = () => {
         setOpen(false);
     };
 
+    console.log(students)
     const history = useHistory()
 
     return (
@@ -152,14 +160,6 @@ export const NavBar = () => {
                         <ListItemIcon> <PeopleAltIcon /></ListItemIcon>
                         <ListItemText primary={'Current Students'} />
                     </ListItem>
-                    <ListItem button key={'All Essays'} onClick={(event) => {
-                        event.preventDefault();
-                        history.push("/essays");
-                        setOpen(false);
-                    }}>
-                        <ListItemIcon> <AssignmentIcon /></ListItemIcon>
-                        <ListItemText primary={'All Essays'} />
-                    </ListItem>
                     <ListItem button key={'Add Students'} onClick={(event) => {
                         event.preventDefault();
                         history.push("/new_student");
@@ -167,6 +167,14 @@ export const NavBar = () => {
                     }}>
                         <ListItemIcon> <PersonAddIcon /></ListItemIcon>
                         <ListItemText primary={'Add Students'} />
+                    </ListItem>
+                    <ListItem button key={'All Essays'} onClick={(event) => {
+                        event.preventDefault();
+                        history.push("/essays");
+                        setOpen(false);
+                    }}>
+                        <ListItemIcon> <AssignmentIcon /></ListItemIcon>
+                        <ListItemText primary={'All Essays'} />
                     </ListItem>
                     <ListItem button key={'Add Essay'} onClick={(event) => {
                         event.preventDefault();
@@ -179,12 +187,14 @@ export const NavBar = () => {
                 </List>
                 <Divider />
                 <List>
-                    {['Student 1', 'Student2'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {students.map(student => (
+                        <ListItem button key={student.id} onClick={(event) => {
+                            event.preventDefault()
+                            history.push(`/students/${student.id}`)}}>
                             <ListItemIcon>
                                 <MailIcon />
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={student.full_name} />
                         </ListItem>
                     ))}
                 </List>

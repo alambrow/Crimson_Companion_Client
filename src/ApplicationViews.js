@@ -4,6 +4,7 @@ import { ProfileProvider } from "./components/providers/ProfileProvider";
 import { AllStudents } from "./components/AllStudents";
 import { StudentProvider } from "./components/providers/StudentProvider";
 import { NewStudent } from "./components/NewStudent";
+import { NavBar } from "./components/NavBar";
 
 export const ApplicationViews = () => {
 
@@ -11,6 +12,7 @@ export const ApplicationViews = () => {
     <>
         <ProfileProvider>
             <StudentProvider>
+                <NavBar />
                 <Route exact path="/home">
                     <LandingSite />
                 </Route>

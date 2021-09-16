@@ -7,7 +7,7 @@ export const Logout = (props) => {
 
   const logoutSuccess = () => {
       localStorage.removeItem('crimson_token')
-      history.push("/login")
+      history.push("/")
     }
 
   return (
