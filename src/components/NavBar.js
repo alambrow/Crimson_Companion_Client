@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import HomeIcon from '@material-ui/icons/Home';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
     },
     content: {
         flexGrow: 1,
@@ -132,36 +133,45 @@ export const NavBar = () => {
                 }}
             >
                 <div className={classes.drawerHeader}>
+                    <HomeIcon onClick={(event) => {
+                        event.preventDefault();
+                        history.push("/home");
+                        setOpen(false);
+                    }}/>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
+                     </IconButton>
                 </div>
                 <Divider />
                 <List>
                     <ListItem button key={'Current Students'} onClick={(event) => {
-                        event.preventDefault()
-                        history.push("/students")
+                        event.preventDefault();
+                        history.push("/students");
+                        setOpen(false);
                     }}>
                         <ListItemIcon> <PeopleAltIcon /></ListItemIcon>
                         <ListItemText primary={'Current Students'} />
                     </ListItem>
                     <ListItem button key={'All Essays'} onClick={(event) => {
-                        event.preventDefault()
-                        history.push("/essays")
+                        event.preventDefault();
+                        history.push("/essays");
+                        setOpen(false);
                     }}>
                         <ListItemIcon> <AssignmentIcon /></ListItemIcon>
                         <ListItemText primary={'All Essays'} />
                     </ListItem>
                     <ListItem button key={'Add Students'} onClick={(event) => {
-                        event.preventDefault()
-                        history.push("/new_student")
+                        event.preventDefault();
+                        history.push("/new_student");
+                        setOpen(false);
                     }}>
                         <ListItemIcon> <PersonAddIcon /></ListItemIcon>
                         <ListItemText primary={'Add Students'} />
                     </ListItem>
                     <ListItem button key={'Add Essay'} onClick={(event) => {
-                        event.preventDefault()
-                        history.push("/new_essay")
+                        event.preventDefault();
+                        history.push("/new_essay");
+                        setOpen(false);
                     }}>
                         <ListItemIcon> <AddBoxIcon /></ListItemIcon>
                         <ListItemText primary={'Add Essay'} />
