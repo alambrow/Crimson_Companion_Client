@@ -8,13 +8,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router';
 
 export const NewStudent = () => {
-    const { createStudent } = useContext(StudentContext)
-    const history = useHistory()
+    const { createStudent } = useContext(StudentContext);
+    const history = useHistory();
     const [ newStudent, setNewStudent ] = useState({
         full_name: "",
         email: "",
         drive_url: ""
-    })
+    });
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -35,9 +35,8 @@ export const NewStudent = () => {
     const handleInputChange = (event) => {
         const student = { ...newStudent }
         student[event.target.name] = event.target.value
-        console.log(student)
         setNewStudent(student)
-    }
+    };
 
     return (
         <main>

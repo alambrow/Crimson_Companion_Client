@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react"
-import { StudentContext } from "./providers/StudentProvider"
+import { useContext, useEffect } from "react";
+import { StudentContext } from "./providers/StudentProvider";
 
 
 export const AllStudents = () => {

@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const StudentContext = createContext()
+export const StudentContext = createContext();
 
 export const StudentProvider = (props) => {
     const [ students, setStudents ] = useState([]);
@@ -12,7 +12,7 @@ export const StudentProvider = (props) => {
             }
         })
         .then(res => res.json())
-        .then(setStudents)
+        .then(setStudents);
     }
 
     const getStudentById = (studentId) => {
@@ -21,7 +21,7 @@ export const StudentProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("crimson_token")}`
             }
         })
-        .then(res => res.json())
+        .then(res => res.json());
     }
 
     const createStudent = (student) => {
@@ -34,7 +34,7 @@ export const StudentProvider = (props) => {
             body: JSON.stringify(student)
         })
         .then(res => res.json())
-        .then(getStudents)
+        .then(getStudents);
     }
 
     const deleteStudent = (studentId) => {
@@ -55,7 +55,7 @@ export const StudentProvider = (props) => {
             },
             body: JSON.stringify(student)
         })
-        .then(getStudents)
+        .then(getStudents);
     }
 
     return (
