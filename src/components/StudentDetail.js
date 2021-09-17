@@ -15,13 +15,15 @@ import './styles/student_detail.css'
 
 export const StudentDetail = () => {
     const { getStudentById, deleteStudent, updateStudent } = useContext(StudentContext);
-    const { getEssaysByStudentId, deleteEssay } = useContext(EssayContext);
+    const { getEssaysByStudentId, deleteEssay, updateEssay } = useContext(EssayContext);
     const { studentId } = useParams();
     const history = useHistory();
     const [currentStudent, setCurrentStudent] = useState({});
     const [open, setOpen] = useState(false);
+    const [essayEditOpen, setEssayEditOpen] = useState(false);
     const [localEssays, setLocalEssays] = useState([]);
-    const [essayRefresh, setEssayRefresh] = useState(false)
+    const [localEssay, setLocalEssay] = useState([])
+    const [essayRefresh, setEssayRefresh] = useState(false);
 
     useEffect(() => {
         getStudentById(studentId)
@@ -31,7 +33,7 @@ export const StudentDetail = () => {
     useEffect(() => {
         getEssaysByStudentId(studentId)
             .then(data => setLocalEssays(data))
-    }, [studentId, essayRefresh])
+    }, [currentStudent, essayRefresh])
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -55,11 +57,97 @@ export const StudentDetail = () => {
         setOpen(false);
     };
 
+    const handleClickOpenEssayDialog = () => {
+        setEssayEditOpen(true);
+    };
+
+    const handleCloseEssayDialog = () => {
+        setEssayEditOpen(false);
+    };
+
     const handleInputChange = (event) => {
         const student = { ...currentStudent };
         student[event.target.name] = event.target.value;
         setCurrentStudent(student);
+    };
+
+    const handleEssayInputChange = (event) => {
+        const essay = { ...localEssay };
+        essay[event.target.name] = event.target.value;
+        essay['student'] = parseInt(studentId);
+        console.log(essay);
+        setLocalEssay(essay);
+    };
+
+    const handleUpdateEssay = () => {
+        updateEssay(localEssay);
+        setEssayEditOpen(false);
+        if (essayRefresh === false) {
+            setEssayRefresh(true)
+        } else {
+            setEssayRefresh(false)
+        }
     }
+
+    const editEssayDialog = (essay) => {
+
+        return (
+            <div>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    className={classes.button}
+                    startIcon={<AccountCircleIcon />}
+                    onClick={() => {
+                        setLocalEssay(essay);
+                        handleClickOpenEssayDialog();
+                    }}
+                >
+                    Edit
+                </Button>
+                <Dialog open={essayEditOpen} onClose={handleCloseEssayDialog} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <TextField id="outlined-basic" name="topic" label="Topic" variant="outlined" value={localEssay.topic} onChange={handleEssayInputChange} fullWidth />
+                        <TextField
+                            id="date"
+                            label="Floating Due Date"
+                            name="floating_dd"
+                            type="date"
+                            value={localEssay.floating_dd}
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleEssayInputChange}
+                        />
+                        <TextField
+                            id="date"
+                            label="Official Due Date"
+                            name="official_dd"
+                            type="date"
+                            value={localEssay.official_dd}
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleEssayInputChange}
+                        />
+                        <TextField id="outlined-basic" name="notes" label="Notes" variant="outlined" value={localEssay.notes} onChange={handleEssayInputChange} fullWidth />
+                    </form>
+                    <DialogActions>
+                        <Button onClick={handleUpdateEssay} color="primary">
+                            Save
+                        </Button>
+                        <Button onClick={handleCloseEssayDialog} color="primary">
+                            Cancel
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        );
+    };
 
     const editDialog = () => {
 
@@ -79,9 +167,9 @@ export const StudentDetail = () => {
                     <DialogTitle id="form-dialog-title">Edit Student Details</DialogTitle>
                     <DialogContent>
                         <form className={classes.root} noValidate autoComplete="off">
-                            <TextField id="outlined-basic" name="full_name" label="Full Name" value={currentStudent.full_name} variant="outlined" onChange={handleInputChange} />
-                            <TextField id="outlined-basic" name="email" label="Email Address" value={currentStudent.email} variant="outlined" onChange={handleInputChange} />
-                            <TextField id="outlined-basic" name="drive_url" label="GoogleDrive URL" value={currentStudent.drive_url} variant="outlined" onChange={handleInputChange} />
+                            <TextField id="outlined-basic" name="full_name" label="Full Name" value={currentStudent.full_name} variant="outlined" onChange={handleInputChange} fullWidth />
+                            <TextField id="outlined-basic" name="email" label="Email Address" value={currentStudent.email} variant="outlined" onChange={handleInputChange} fullWidth />
+                            <TextField id="outlined-basic" name="drive_url" label="GoogleDrive URL" value={currentStudent.drive_url} variant="outlined" onChange={handleInputChange} fullWidth />
                         </form>
                     </DialogContent>
                     <DialogActions>
@@ -138,6 +226,7 @@ export const StudentDetail = () => {
                 <br />
                 {essay.floating_dd}
                 <br />
+                {editEssayDialog(essay)}
                 {deleteEssayButton(essay)}
                 <br /> <br />
             </div>

@@ -9,7 +9,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -19,16 +18,16 @@ export const NewEssay = () => {
     const history = useHistory();
     
     const [newEssay, setNewEssay] = useState({
-        "student": 0,
-        "topic": "",
-        "official_dd": "",
-        "floating_dd": "",
-        "notes": ""
-    })
+        "student": '',
+        "topic": '',
+        "official_dd": '',
+        "floating_dd": '',
+        "notes": ''
+    });
 
     useEffect(() => {
-        getStudents()
-    }, [])
+        getStudents();
+    }, []);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -91,7 +90,6 @@ export const NewEssay = () => {
                         }
 
                     </Select>
-                    <FormHelperText>Some important helper text</FormHelperText>
                 </FormControl>
                 <TextField id="outlined-basic" name="topic" label="Topic" variant="outlined" onChange={handleInputChange} />
                 <TextField
