@@ -24,6 +24,24 @@ export const EssayProvider = (props) => {
             .then(res => res.json());
     }
 
+    const getUpcomingEssays = (dialInt) => {
+        return fetch(`http://127.0.0.1:8000/essays?upcoming=${dialInt}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("crimson_token")}`
+            }
+        })
+            .then(res => res.json());
+    }
+
+    const getUpcomingEssaysInDateRange = (day) => {
+        return fetch(`http://127.0.0.1:8000/essays?day=${day}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("crimson_token")}`
+            }
+        })
+            .then(res => res.json());
+    }
+
     const getEssaysByStudentId = (studentId) => {
         return fetch(`http://127.0.0.1:8000/essays?student=${studentId}`, {
             headers: {
@@ -68,7 +86,7 @@ export const EssayProvider = (props) => {
     }
 
     return (
-        <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay }}>
+        <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay, getUpcomingEssays, getUpcomingEssaysInDateRange }}>
             {props.children}
         </EssayContext.Provider>
     )
