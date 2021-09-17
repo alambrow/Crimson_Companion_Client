@@ -1,0 +1,11 @@
+.student_detail__top_flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.student_detail__buttons_flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

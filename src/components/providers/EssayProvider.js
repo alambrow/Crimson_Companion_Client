@@ -24,6 +24,15 @@ export const EssayProvider = (props) => {
             .then(res => res.json());
     }
 
+    const getEssaysByStudentId = (studentId) => {
+        return fetch(`http://127.0.0.1:8000/essays?student=${studentId}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("crimson_token")}`
+            }
+        })
+            .then(res => res.json());
+    }
+
     const createEssay = (essay) => {
         return fetch("http://127.0.0.1:8000/essays", {
             method: "POST",
@@ -59,7 +68,7 @@ export const EssayProvider = (props) => {
     }
 
     return (
-        <EssayContext.Provider value={{ getEssays, essays, getEssayById, createEssay, deleteEssay, updateEssay }}>
+        <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay }}>
             {props.children}
         </EssayContext.Provider>
     )
