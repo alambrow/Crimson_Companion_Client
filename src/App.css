@@ -1,3 +1,8 @@
 main {
   margin: 4rem 0rem 0rem 2rem;
+  justify-content: center;
+}
+
+abbr[title] {
+  text-decoration: none;
 }

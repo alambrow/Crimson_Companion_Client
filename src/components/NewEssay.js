@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import './styles/new_essay.css';
 
 export const NewEssay = () => {
     const { createEssay } = useContext(EssayContext);
@@ -70,6 +71,7 @@ export const NewEssay = () => {
 
     return (
         <main>
+            <div className="new-essay__card">
             <div className="new-essay__header">
                 Enter new essay information:
             </div>
@@ -114,7 +116,7 @@ export const NewEssay = () => {
                     }}
                     onChange={handleInputChange}
                 />
-                <TextField id="outlined-basic" name="notes" label="Notes" variant="outlined" onChange={handleInputChange} />
+                <TextField id="outlined-basic" name="notes" label="Notes" variant="outlined" onChange={handleInputChange} multiline={true} />
             </form>
             <Button
                 variant="contained"
@@ -143,6 +145,7 @@ export const NewEssay = () => {
             >
                 Cancel
             </Button>
+            </div>
         </main>
     );
 }

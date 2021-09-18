@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "./providers/ProfileProvider";
 import { EssayContext } from "./providers/EssayProvider";
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import './styles/react_calendar.css';
 
 export const LandingSite = () => {
     const { profile, getProfile } = useContext(ProfileContext);
@@ -47,7 +47,7 @@ export const LandingSite = () => {
         <>
             <main>
                 <div className="profile_outline">
-                    <div className="profile_welcome_banner">Welcome, {profile.username}</div>
+                    <div className="profile_welcome_banner">Welcome, {profile.username?.split(" ")[0]}</div>
                 </div>
                 <div>
                     <Calendar
