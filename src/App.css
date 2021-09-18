@@ -1,3 +1,7 @@
 main {
   margin: 4rem 0rem 0rem 2rem;
 }
+
+abbr[title] {
+  text-decoration: none;
+}
