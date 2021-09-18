@@ -1,0 +1,36 @@
+.login__full_panel {
+    border: 1px solid #bdbdb1;
+    border-radius: 5px;
+    max-width: 20rem;
+    text-align: center;
+    padding: 1rem 0rem;
+    background: rgba(246, 246, 246, .8);
+    justify-self: center;
+}
+
+.login__welcome_banner {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.login__banner_undertitle {
+    font-size: small;
+}
+
+.login__icon {
+    width: 10;
+    height: 10;
+}
+
+.login__bottom_flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__logo {
+    margin: 1rem 0rem;
+}
+
+.login_button {
+    margin: 1rem 0rem;
+}

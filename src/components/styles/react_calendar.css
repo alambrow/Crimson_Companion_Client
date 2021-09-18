@@ -53,10 +53,10 @@
   .react-calendar__month-view__weekdays {
     text-align: center;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: .9em;
     background-color: #ff575f;
-    color:#f0f0f0;
+    color:#ffffff;
     border: .5px solid #bdbdb1;
     border-radius: 2px;
   }
