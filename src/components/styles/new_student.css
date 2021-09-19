@@ -1,4 +1,10 @@
+.new-student__all {
+    display: flex;
+    justify-content: center;
+}
+
 .new-student__card {
+    margin: 1rem 0rem;
     border: 1px solid #bdbdb1;
     border-radius: 5px;
     max-width: 14rem;
@@ -6,7 +12,6 @@
     padding: 1rem 0rem;
     background: rgba(246, 246, 246, .8);
     justify-self: center;
-    margin: 5rem 0rem 0rem 2rem;
 }
 
 .new-student__header {

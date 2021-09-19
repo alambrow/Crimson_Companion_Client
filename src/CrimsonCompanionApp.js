@@ -10,6 +10,7 @@ const CrimsonCompanionApp = () => (
       <Route path="/" render={() => {
           if (localStorage.getItem("crimson_token")) {
             return <>
+                <Redirect to="/home" />
                 <Route path="/" render={ApplicationViews}/>
                 </>
           } else {

@@ -2,10 +2,31 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    padding-left: 2rem;
 }
 
 .student_detail__buttons_flex {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+}
+
+.student-detail__timeline_buttons_flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.student_detail__name {
+    font-size: x-large;
+}
+
+.student_detail__email {
+    font-size: medium;
+    padding: .5rem 0rem;
+}
+
+.student_detail__drive_url {
+    font-size: medium;
+    padding: .5rem 0rem;
 }

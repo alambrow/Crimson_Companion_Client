@@ -43,6 +43,10 @@ export const LandingSite = () => {
         paper: {
             padding: '6px 16px',
         },
+        bannerPaper: {
+            padding: '1rem',
+            margin: '0rem 0rem 2rem 0rem',
+        },
         calPaper: {
             padding: '0px',
             width: '25rem',
@@ -100,9 +104,9 @@ export const LandingSite = () => {
     return (
         <>
             <main>
-                <div className="profile_outline">
+            <Paper elevation={3} className={classes.bannerPaper}>
                     <div className="profile_welcome_banner">Welcome, {profile.username?.split(" ")[0]}!</div>
-                </div>
+            </Paper>
                 <div className="profile__cal_flex">
                     <Paper elevation={3} className={classes.calPaper}>
                         <Calendar
