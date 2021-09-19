@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(0, 1),
+        padding: theme.spacing(0, 2.1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'space-between',
@@ -140,14 +140,23 @@ export const NavBar = () => {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <HomeIcon onClick={(event) => {
-                        event.preventDefault();
-                        history.push("/home");
-                        setOpen(false);
-                    }}/>
+                    <IconButton
+                        color="inherit"
+                        aria-label="home"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            history.push("/home");
+                            setOpen(false);
+                        }} 
+                        edge="start"
+                    >
+                    <HomeIcon 
+                        color="inherit"
+                    />
+                    </IconButton>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                     </IconButton>
+                    </IconButton>
                 </div>
                 <Divider />
                 <List>
@@ -191,7 +200,7 @@ export const NavBar = () => {
                             event.preventDefault();
                             history.push(`/students/${student.id}`);
                             setOpen(false);
-                            }}>
+                        }}>
                             <ListItemIcon>
                                 <PersonIcon />
                             </ListItemIcon>

@@ -17,7 +17,7 @@ export const NewEssay = () => {
     const { createEssay } = useContext(EssayContext);
     const { students, getStudents } = useContext(StudentContext)
     const history = useHistory();
-    
+
     const [newEssay, setNewEssay] = useState({
         "student": '',
         "topic": '',
@@ -71,80 +71,82 @@ export const NewEssay = () => {
 
     return (
         <main>
-            <div className="new-essay__card">
-            <div className="new-essay__header">
-                Enter new essay information:
-            </div>
-            <form className={classes.root} noValidate autoComplete="off">
-                <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-helper-label">Student</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                        name="student"
-                        value={newEssay.student}
-                        onChange={handleInputChange}
-                    >
-                        {
-                            students.map(student => (
-                                <MenuItem value={student.id}>{student.full_name}</MenuItem>
-                            ))
-                        }
+            <div className="new-essay__all">
+                <div className="new-essay__card">
+                    <div className="new-essay__header">
+                        Enter new essay information:
+                    </div>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-helper-label">Student</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                name="student"
+                                value={newEssay.student}
+                                onChange={handleInputChange}
+                            >
+                                {
+                                    students.map(student => (
+                                        <MenuItem value={student.id}>{student.full_name}</MenuItem>
+                                    ))
+                                }
 
-                    </Select>
-                </FormControl>
-                <TextField id="outlined-basic" name="topic" label="Topic" variant="outlined" onChange={handleInputChange} />
-                <TextField
-                    id="date"
-                    label="Floating Due Date"
-                    name="floating_dd"
-                    type="date"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    onChange={handleInputChange}
-                />
-                <TextField
-                    id="date"
-                    label="Official Due Date"
-                    name="official_dd"
-                    type="date"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    onChange={handleInputChange}
-                />
-                <TextField id="outlined-basic" name="notes" label="Notes" variant="outlined" onChange={handleInputChange} multiline={true} />
-            </form>
-            <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                onClick={(event) => {
-                    event.preventDefault()
-                    createEssay(newEssay)
-                        .then(history.push("/home"))
-                }}
-            >
-                Save
-            </Button>
-            <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                size="small"
-                onClick={(event) => {
-                    event.preventDefault()
-                    history.push("/home")
-                }}
-            >
-                Cancel
-            </Button>
+                            </Select>
+                        </FormControl>
+                        <TextField id="outlined-basic" name="topic" label="Topic" variant="outlined" onChange={handleInputChange} />
+                        <TextField
+                            id="date"
+                            label="Floating Due Date"
+                            name="floating_dd"
+                            type="date"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleInputChange}
+                        />
+                        <TextField
+                            id="date"
+                            label="Official Due Date"
+                            name="official_dd"
+                            type="date"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleInputChange}
+                        />
+                        <TextField id="outlined-basic" name="notes" label="Notes" variant="outlined" onChange={handleInputChange} multiline={true} />
+                    </form>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        className={classes.button}
+                        startIcon={<SaveIcon />}
+                        onClick={(event) => {
+                            event.preventDefault()
+                            createEssay(newEssay)
+                                .then(history.push("/home"))
+                        }}
+                    >
+                        Save
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        size="small"
+                        onClick={(event) => {
+                            event.preventDefault()
+                            history.push("/home")
+                        }}
+                    >
+                        Cancel
+                    </Button>
+                </div>
             </div>
         </main>
     );

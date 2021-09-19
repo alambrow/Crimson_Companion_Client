@@ -1,3 +1,8 @@
+.new-essay__all {
+    display: flex;
+    justify-content: center;
+}
+
 .new-essay__card {
     border: 1px solid #bdbdb1;
     border-radius: 5px;
@@ -6,5 +11,5 @@
     padding: 1rem .2rem;
     background: rgba(246, 246, 246, .8);
     justify-self: center;
-    margin: 5rem 0rem 0rem 2rem;
+    margin: 1rem 0rem;
 }

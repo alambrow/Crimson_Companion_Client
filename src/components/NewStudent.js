@@ -41,42 +41,44 @@ export const NewStudent = () => {
 
     return (
         <main>
-            <div className="new-student__card">
-                <div className="new-student__header">
-                    Enter new student information:
+            <div className="new-student__all">
+                <div className="new-student__card">
+                    <div className="new-student__header">
+                        Enter new student information:
+                    </div>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <TextField id="outlined-basic" name="full_name" label="Full Name" variant="outlined" onChange={handleInputChange} />
+                        <TextField id="outlined-basic" name="email" label="Email Address" variant="outlined" onChange={handleInputChange} />
+                        <TextField id="outlined-basic" name="drive_url" label="GoogleDrive URL" variant="outlined" onChange={handleInputChange} />
+                    </form>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        className={classes.button}
+                        startIcon={<SaveIcon />}
+                        onClick={(event) => {
+                            event.preventDefault()
+                            createStudent(newStudent)
+                                .then(history.push("/home"))
+                        }}
+                    >
+                        Save
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        size="small"
+                        onClick={(event) => {
+                            event.preventDefault()
+                            history.push("/home")
+                        }}
+                    >
+                        Cancel
+                    </Button>
                 </div>
-                <form className={classes.root} noValidate autoComplete="off">
-                    <TextField id="outlined-basic" name="full_name" label="Full Name" variant="outlined" onChange={handleInputChange} />
-                    <TextField id="outlined-basic" name="email" label="Email Address" variant="outlined" onChange={handleInputChange} />
-                    <TextField id="outlined-basic" name="drive_url" label="GoogleDrive URL" variant="outlined" onChange={handleInputChange} />
-                </form>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className={classes.button}
-                    startIcon={<SaveIcon />}
-                    onClick={(event) => {
-                        event.preventDefault()
-                        createStudent(newStudent)
-                            .then(history.push("/home"))
-                    }}
-                >
-                    Save
-                </Button>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                    startIcon={<DeleteIcon />}
-                    size="small"
-                    onClick={(event) => {
-                        event.preventDefault()
-                        history.push("/home")
-                    }}
-                >
-                    Cancel
-                </Button>
             </div>
         </main>
     );

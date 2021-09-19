@@ -11,6 +11,16 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineItem from '@material-ui/lab/TimelineItem';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import './styles/student_detail.css'
 
 export const StudentDetail = () => {
@@ -44,6 +54,12 @@ export const StudentDetail = () => {
         },
         button: {
             margin: theme.spacing(1),
+        },
+        paper: {
+            padding: '6px 16px',
+        },
+        secondaryTail: {
+            backgroundColor: theme.palette.secondary.main,
         },
     }));
 
@@ -87,6 +103,47 @@ export const StudentDetail = () => {
         } else {
             setEssayRefresh(false)
         }
+    }
+
+    const LocalEssaysTimeline = (essays) => {
+
+        return (
+            <Timeline align="alternate">
+                {
+                    essays.map(essay => (
+                        <TimelineItem>
+                            <TimelineOppositeContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
+                                    <br />
+                                    Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                </Typography>
+                            </TimelineOppositeContent>
+                            <TimelineSeparator>
+                                <TimelineDot color="primary">
+                                    <AssignmentIcon />
+                                </TimelineDot>
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <Paper elevation={3} className={classes.paper}>
+                                    <Typography variant="h6" component="h1">
+                                        {essay.topic}
+                                    </Typography>
+                                    <Typography>
+                                        {essay.notes}
+                                    </Typography>
+                                    <div className="student-detail__timeline_buttons_flex">
+                                        {editEssayDialog(essay)}
+                                        {deleteEssayButton(essay)}
+                                    </div>
+                                </Paper>
+                            </TimelineContent>
+                        </TimelineItem>
+                    ))
+                }
+            </Timeline>
+        );
     }
 
     const editEssayDialog = (essay) => {
@@ -235,8 +292,17 @@ export const StudentDetail = () => {
 
     return (
         <main>
+            <Paper elevation={3} className={classes.paper}>
             <div className="student_detail__top_flex">
-                <div className="student_detail__name">{currentStudent.full_name}</div>
+                <div className="student_detail__name">
+                    {currentStudent.full_name}
+                </div>
+                <div className="student_detail__email">
+                    <a href={"mailto:" + currentStudent.email}>Email {currentStudent.full_name?.split(" ")[0]}</a>
+                </div>
+                <div className="student_detail__drive_url">
+                    <a href={currentStudent.drive_url}>{currentStudent.full_name?.split(" ")[0]}'s Google Drive</a>
+                </div>
                 <div className="student_detail__buttons_flex">
                     {editDialog()}
                     <Button
@@ -255,9 +321,10 @@ export const StudentDetail = () => {
                     </Button>
                 </div>
             </div>
+            </Paper>
             <div className="student_detail__essays">
                 {
-                    localEssays.length === 0 ? renderNoEssays() : localEssays.map(essay => renderEssayItem(essay))
+                    localEssays.length === 0 ? renderNoEssays() : LocalEssaysTimeline(localEssays)
                 }
             </div>
         </main>
