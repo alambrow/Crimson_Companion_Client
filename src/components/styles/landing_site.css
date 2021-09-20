@@ -13,3 +13,11 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.timeline__floating_dd {
+    color: royalblue;
+}
+
+.timeline__official_dd {
+    color: rgb(255, 61, 47);
+}
