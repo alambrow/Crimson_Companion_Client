@@ -22,7 +22,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentTurnedInIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import './styles/student_detail.css'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import './styles/student_detail.css';
 
 export const StudentDetail = () => {
     const { getStudentById, deleteStudent, updateStudent } = useContext(StudentContext);
@@ -57,6 +58,10 @@ export const StudentDetail = () => {
             '& > *': {
                 margin: theme.spacing(1),
                 width: '25ch'
+            },
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
             },
         },
         button: {
@@ -110,11 +115,11 @@ export const StudentDetail = () => {
         updateEssay(localEssay);
         setEssayEditOpen(false);
         if (essayRefresh === false) {
-            setEssayRefresh(true)
+            setEssayRefresh(true);
         } else {
-            setEssayRefresh(false)
+            setEssayRefresh(false);
         }
-        history.push(`/students/${studentId}`)
+        history.push(`/students/${studentId}`);
     }
 
     const LocalEssaysTimeline = (essays) => {
@@ -301,7 +306,14 @@ export const StudentDetail = () => {
 
     const renderNoEssays = () => {
         return (
-            <div className="essay__no_essays">No essays to display.</div>
+            <div className="essay__no_essays">
+                <div className="essay__no_essays_text">
+                    Awaiting essays.
+                </div>
+                <div className={classes.root}>
+                    <CircularProgress />
+                </div>
+            </div>
         )
     }
 
@@ -316,11 +328,11 @@ export const StudentDetail = () => {
                 onClick={() => {
                     deleteEssay(essay.id);
                     if (essayRefresh === false) {
-                        setEssayRefresh(true)
+                        setEssayRefresh(true);
                     } else {
-                        setEssayRefresh(false)
+                        setEssayRefresh(false);
                     }
-                    history.push(`/students/${studentId}`)
+                    history.push(`/students/${studentId}`);
                 }}
             >
                 Delete
@@ -362,46 +374,46 @@ export const StudentDetail = () => {
     return (
         <main>
             <Paper elevation={3} className={classes.paper}>
-            <div className="student_detail__top_flex">
-                <div className="student_detail__name">
-                    {currentStudent.full_name}
+                <div className="student_detail__top_flex">
+                    <div className="student_detail__name">
+                        {currentStudent.full_name}
+                    </div>
+                    <div className="student_detail__email">
+                        <a href={"mailto:" + currentStudent.email}>Email {currentStudent.full_name?.split(" ")[0]}</a>
+                    </div>
+                    <div className="student_detail__drive_url">
+                        <a href={currentStudent.drive_url}>{currentStudent.full_name?.split(" ")[0]}'s Google Drive</a>
+                    </div>
+                    <div className="student_detail__buttons_flex">
+                        {editDialog()}
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className={classes.button}
+                            startIcon={<DeleteIcon />}
+                            onClick={(event) => {
+                                event.preventDefault()
+                                deleteStudent(studentId)
+                                    .then(history.push("/home"))
+                            }}
+                        >
+                            Delete
+                        </Button>
+                    </div>
                 </div>
-                <div className="student_detail__email">
-                    <a href={"mailto:" + currentStudent.email}>Email {currentStudent.full_name?.split(" ")[0]}</a>
-                </div>
-                <div className="student_detail__drive_url">
-                    <a href={currentStudent.drive_url}>{currentStudent.full_name?.split(" ")[0]}'s Google Drive</a>
-                </div>
-                <div className="student_detail__buttons_flex">
-                    {editDialog()}
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className={classes.button}
-                        startIcon={<DeleteIcon />}
-                        onClick={(event) => {
-                            event.preventDefault()
-                            deleteStudent(studentId)
-                                .then(history.push("/home"))
-                        }}
-                    >
-                        Delete
-                    </Button>
-                </div>
-            </div>
             </Paper>
             <Paper elevation={3} className={classes.fullPapePaper}>
-            <div className="student_detail__essays">
-                <div className="student_detail__upcoming_essays">
-                {
-                    localEssays.length === 0 ? renderNoEssays() : LocalEssaysTimeline(localEssays)
-                }
+                <div className="student_detail__essays">
+                    <div className="student_detail__upcoming_essays">
+                        {
+                            localEssays.length === 0 ? renderNoEssays() : LocalEssaysTimeline(localEssays)
+                        }
+                    </div>
+                    {
+                        CompleteEssaysTimeline(completeEssays)
+                    }
                 </div>
-                {
-                    CompleteEssaysTimeline(completeEssays)
-                }
-            </div>
             </Paper>
         </main>
     );

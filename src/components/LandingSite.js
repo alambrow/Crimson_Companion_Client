@@ -15,6 +15,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const LandingSite = () => {
     const { profile, getProfile } = useContext(ProfileContext);
@@ -55,6 +56,12 @@ export const LandingSite = () => {
         secondaryTail: {
             backgroundColor: theme.palette.secondary.main,
         },
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
     }));
 
     const convertDateToString = (date) => {
@@ -83,7 +90,10 @@ export const LandingSite = () => {
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color="primary">
-                                    <AssignmentIcon />
+                                    <div className={classes.root}>
+                                        
+                                        <CircularProgress color="secondary" />
+                                    </div>
                                 </TimelineDot>
                                 <TimelineConnector />
                             </TimelineSeparator>

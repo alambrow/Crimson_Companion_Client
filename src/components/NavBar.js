@@ -24,13 +24,12 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Logout } from './Logout';
 import { useHistory } from 'react-router';
 import { StudentContext } from './providers/StudentProvider';
-import CrimsonIcon from './images/crimson_icon.jpg';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        display: 'flex'
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -67,9 +66,6 @@ const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'space-between',
-    },
-    MuiToolbar: {
-        justifyContent: 'space-between'
     },
     content: {
         flexGrow: 1,
@@ -132,7 +128,6 @@ export const NavBar = () => {
                     <Typography variant="h6" noWrap>
                         Crimson Companion
                     </Typography>
-                    <img src={CrimsonIcon} justify-content="center" width="40" height="40" />
                 </Toolbar>
             </AppBar>
             <Drawer
