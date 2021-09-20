@@ -164,7 +164,7 @@ export const StudentDetail = () => {
                     Edit
                 </Button>
                 <Dialog open={essayEditOpen} onClose={handleCloseEssayDialog} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Edit essay details:</DialogTitle>
                     <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="outlined-basic" name="topic" label="Topic" variant="outlined" value={localEssay.topic} onChange={handleEssayInputChange} fullWidth />
                         <TextField
@@ -272,23 +272,7 @@ export const StudentDetail = () => {
                 Delete
             </Button>
         )
-    }
-
-    const renderEssayItem = essay => {
-        return (
-            <div className="essay_item">
-                {essay.topic}
-                <br />
-                {essay.official_dd}
-                <br />
-                {essay.floating_dd}
-                <br />
-                {editEssayDialog(essay)}
-                {deleteEssayButton(essay)}
-                <br /> <br />
-            </div>
-        );
-    }
+    };
 
     return (
         <main>

@@ -28,7 +28,7 @@ export const LandingSite = () => {
     }, []);
 
     useEffect(() => {
-        getUpcomingEssays(3)
+        getUpcomingEssays(5)
             .then(data => setUpcomingEssays(data));
     }, []);
 
@@ -72,10 +72,13 @@ export const LandingSite = () => {
                         <TimelineItem>
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
-                                    Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
-                                    {convertDateToString(essay.floating_dd)}
-                                    <br />
-                                    Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                    <div className="timeline__floating_dd">
+                                        Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
+                                        {convertDateToString(essay.floating_dd)}
+                                    </div>
+                                    <div className="timeline__official_dd">
+                                        Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                    </div>
                                 </Typography>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
@@ -104,9 +107,9 @@ export const LandingSite = () => {
     return (
         <>
             <main>
-            <Paper elevation={3} className={classes.bannerPaper}>
+                <Paper elevation={3} className={classes.bannerPaper}>
                     <div className="profile_welcome_banner">Welcome, {profile.username?.split(" ")[0]}!</div>
-            </Paper>
+                </Paper>
                 <div className="profile__cal_flex">
                     <Paper elevation={3} className={classes.calPaper}>
                         <Calendar
@@ -120,7 +123,7 @@ export const LandingSite = () => {
                         />
                     </Paper>
                 </div>
-                    {EssayTimeline(upcomingEssays)}
+                {EssayTimeline(upcomingEssays)}
             </main>
         </>
     )

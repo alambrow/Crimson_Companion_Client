@@ -1,9 +1,14 @@
+.login__whole_page {
+    display: flex;
+    justify-content: center;
+}
+
 .login__full_panel {
     border: 1px solid #bdbdb1;
     border-radius: 5px;
     max-width: 20rem;
     text-align: center;
-    padding: 1rem 0rem;
+    padding: 1rem 1rem;
     background: rgba(246, 246, 246, .8);
     justify-self: center;
 }
