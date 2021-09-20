@@ -68,6 +68,10 @@ export const StudentDetail = () => {
         secondaryTail: {
             backgroundColor: theme.palette.secondary.main,
         },
+        fullPapePaper: {
+            padding: '6px 16px',
+            margin: '1rem 1rem'
+        }
     }));
 
     const classes = useStyles();
@@ -110,6 +114,7 @@ export const StudentDetail = () => {
         } else {
             setEssayRefresh(false)
         }
+        history.push(`/students/${studentId}`)
     }
 
     const LocalEssaysTimeline = (essays) => {
@@ -315,6 +320,7 @@ export const StudentDetail = () => {
                     } else {
                         setEssayRefresh(false)
                     }
+                    history.push(`/students/${studentId}`)
                 }}
             >
                 Delete
@@ -385,9 +391,9 @@ export const StudentDetail = () => {
                 </div>
             </div>
             </Paper>
+            <Paper elevation={3} className={classes.fullPapePaper}>
             <div className="student_detail__essays">
                 <div className="student_detail__upcoming_essays">
-                    Upcoming essays:
                 {
                     localEssays.length === 0 ? renderNoEssays() : LocalEssaysTimeline(localEssays)
                 }
@@ -396,6 +402,7 @@ export const StudentDetail = () => {
                     CompleteEssaysTimeline(completeEssays)
                 }
             </div>
+            </Paper>
         </main>
     );
 }
