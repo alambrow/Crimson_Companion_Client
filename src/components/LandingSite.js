@@ -22,6 +22,7 @@ export const LandingSite = () => {
     const [upcomingEssays, setUpcomingEssays] = useState([]);
     const [day, setDay] = useState(new Date());
     const [altDay, setAltDay] = useState();
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         getProfile();
@@ -38,6 +39,16 @@ export const LandingSite = () => {
                 .then(data => setUpcomingEssays(data))
         }
     }, [altDay])
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+          setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+        }, 800);
+    
+        return () => {
+          clearInterval(timer);
+        };
+      }, []);
 
     const useStyles = makeStyles((theme) => ({
         paper: {
@@ -64,13 +75,13 @@ export const LandingSite = () => {
     }));
 
     const convertDateToString = (date) => {
-        let converted_date = new Date(date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})
-        return converted_date
+        let converted_date = new Date(date).toLocaleDateString('en', {timeZone: 'UTC', month: 'long', day: 'numeric'});
+        return converted_date;
     }
 
     const classes = useStyles();
-    const EssayTimeline = (essays) => {
 
+    const EssayTimeline = (essays) => {
         return (
             <Timeline align="alternate">
                 {
@@ -93,7 +104,7 @@ export const LandingSite = () => {
                             <TimelineSeparator>
                                 <TimelineDot color="primary">
                                     <div className={classes.root}>
-                                        <CircularProgress color="secondary" />
+                                        <CircularProgress color="secondary" variant="determinate" value={progress} />
                                     </div>
                                 </TimelineDot>
                                 <TimelineConnector />
@@ -113,7 +124,7 @@ export const LandingSite = () => {
                 }
             </Timeline>
         );
-    }
+    };
 
     return (
         <>
@@ -137,5 +148,5 @@ export const LandingSite = () => {
                 {EssayTimeline(upcomingEssays)}
             </main>
         </>
-    )
-}
+    );
+};
