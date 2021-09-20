@@ -30,3 +30,13 @@
     font-size: medium;
     padding: .5rem 0rem;
 }
+
+.student_detail__upcoming_essays {
+    padding: 1rem;
+    font-size: larger;
+}
+
+.essay__no_essays {
+    padding: 1.5rem;
+    font-size: large;
+}
