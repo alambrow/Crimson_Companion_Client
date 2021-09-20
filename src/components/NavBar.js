@@ -24,6 +24,8 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Logout } from './Logout';
 import { useHistory } from 'react-router';
 import { StudentContext } from './providers/StudentProvider';
+import CrimsonIcon from './images/crimson_icon.jpg';
+import './styles/nav.css';
 
 const drawerWidth = 240;
 
@@ -125,8 +127,13 @@ export const NavBar = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Crimson Companion
+                    <Typography noWrap >
+                        <div className="nav__flex">
+                            <div className="nav__title">
+                                Crimson Companion
+                            </div>
+                            <img src={CrimsonIcon} justify-content="center" width="30" height="30" margin="1rem" />
+                        </div>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -147,12 +154,12 @@ export const NavBar = () => {
                             event.preventDefault();
                             history.push("/home");
                             setOpen(false);
-                        }} 
+                        }}
                         edge="start"
                     >
-                    <HomeIcon 
-                        color="inherit"
-                    />
+                        <HomeIcon
+                            color="inherit"
+                        />
                     </IconButton>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}

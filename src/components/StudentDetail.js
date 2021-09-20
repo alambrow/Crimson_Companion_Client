@@ -123,13 +123,11 @@ export const StudentDetail = () => {
     }
 
     const convertDateToString = (date) => {
-        let converted_date = new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-        console.log(converted_date)
-        return converted_date
+        let converted_date = new Date(date).toLocaleDateString('en', { timeZone: 'UTC', month: 'long', day: 'numeric' });
+        return converted_date;
     }
 
     const LocalEssaysTimeline = (essays) => {
-
         return (
             <Timeline align="alternate">
                 {
@@ -170,10 +168,9 @@ export const StudentDetail = () => {
                 }
             </Timeline>
         );
-    }
+    };
 
     const CompleteEssaysTimeline = (essays) => {
-
         return (
             <Timeline align="alternate">
                 {
@@ -209,10 +206,9 @@ export const StudentDetail = () => {
                 }
             </Timeline>
         );
-    }
+    };
 
     const editEssayDialog = (essay) => {
-
         return (
             <div>
                 <Button
@@ -309,7 +305,7 @@ export const StudentDetail = () => {
                 </Dialog>
             </div>
         );
-    }
+    };
 
     const renderNoEssays = () => {
         return (
@@ -318,11 +314,13 @@ export const StudentDetail = () => {
                     Awaiting essays.
                 </div>
                 <div className={classes.root}>
+                    <CircularProgress color="secondary" />
                     <CircularProgress />
+                    <CircularProgress color="secondary" />
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     const deleteEssayButton = essay => {
         return (
@@ -344,7 +342,7 @@ export const StudentDetail = () => {
             >
                 Delete
             </Button>
-        )
+        );
     };
 
     const completeEssayButton = essay => {
@@ -375,7 +373,7 @@ export const StudentDetail = () => {
             >
                 Complete
             </Button>
-        )
+        );
     };
 
     return (
@@ -424,4 +422,4 @@ export const StudentDetail = () => {
             </Paper>
         </main>
     );
-}
+};
