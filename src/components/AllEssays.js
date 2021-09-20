@@ -11,6 +11,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const AllEssays = () => {
     const { essays, getEssays } = useContext(EssayContext)
@@ -18,8 +19,14 @@ export const AllEssays = () => {
     useEffect(() => {
         getEssays()
     }, [])
-    
+
     const useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
         paper: {
             padding: '6px 16px',
         },
@@ -60,7 +67,9 @@ export const AllEssays = () => {
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color="primary">
-                                    <AssignmentIcon />
+                                    <div className={classes.root}>
+                                        <CircularProgress color="secondary" />
+                                    </div>
                                 </TimelineDot>
                                 <TimelineConnector />
                             </TimelineSeparator>
@@ -85,9 +94,9 @@ export const AllEssays = () => {
         <>
             <main>
                 <div className="essays_page_all">
-                <Paper elevation={3} className={classes.bannerPaper}>
-                    <div className="essays__banner">All Essays</div>
-                </Paper>
+                    <Paper elevation={3} className={classes.bannerPaper}>
+                        <div className="essays__banner">All Essays</div>
+                    </Paper>
                     {
                         EssayTimeline(essays)
                     }

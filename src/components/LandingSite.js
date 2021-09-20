@@ -12,9 +12,9 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const LandingSite = () => {
     const { profile, getProfile } = useContext(ProfileContext);
@@ -55,11 +55,17 @@ export const LandingSite = () => {
         secondaryTail: {
             backgroundColor: theme.palette.secondary.main,
         },
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
     }));
 
     const convertDateToString = (date) => {
-        let converted_date = date
-        console.log(converted_date)
+        let converted_date = new Date(date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})
+        return converted_date
     }
 
     const classes = useStyles();
@@ -73,17 +79,22 @@ export const LandingSite = () => {
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
                                     <div className="timeline__floating_dd">
-                                        Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
+                                        Floating due date:
+                                        {' '}
                                         {convertDateToString(essay.floating_dd)}
                                     </div>
                                     <div className="timeline__official_dd">
-                                        Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                        Official due date: 
+                                        {' '}
+                                        {convertDateToString(essay.official_dd)}
                                     </div>
                                 </Typography>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color="primary">
-                                    <AssignmentIcon />
+                                    <div className={classes.root}>
+                                        <CircularProgress color="secondary" />
+                                    </div>
                                 </TimelineDot>
                                 <TimelineConnector />
                             </TimelineSeparator>

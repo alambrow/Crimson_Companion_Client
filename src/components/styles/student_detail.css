@@ -37,6 +37,13 @@
 }
 
 .essay__no_essays {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.essay__no_essays_text {
     padding: 1.5rem;
     font-size: large;
 }
