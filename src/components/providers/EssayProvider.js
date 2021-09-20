@@ -85,8 +85,17 @@ export const EssayProvider = (props) => {
             .then(getEssays);
     }
 
+    const getCompleteEssaysByStudentId = (studentId) => {
+        return fetch(`http://127.0.0.1:8000/essays?student=${studentId}&is_complete=True`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("crimson_token")}`
+            }
+        })
+            .then(res => res.json());
+    }
+
     return (
-        <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay, getUpcomingEssays, getUpcomingEssaysInDateRange }}>
+        <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay, getUpcomingEssays, getUpcomingEssaysInDateRange, getCompleteEssaysByStudentId }}>
             {props.children}
         </EssayContext.Provider>
     )

@@ -19,20 +19,22 @@ import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentTurnedInIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './styles/student_detail.css'
 
 export const StudentDetail = () => {
     const { getStudentById, deleteStudent, updateStudent } = useContext(StudentContext);
-    const { getEssaysByStudentId, deleteEssay, updateEssay } = useContext(EssayContext);
+    const { getEssaysByStudentId, deleteEssay, updateEssay, getCompleteEssaysByStudentId } = useContext(EssayContext);
     const { studentId } = useParams();
     const history = useHistory();
     const [currentStudent, setCurrentStudent] = useState({});
     const [open, setOpen] = useState(false);
     const [essayEditOpen, setEssayEditOpen] = useState(false);
     const [localEssays, setLocalEssays] = useState([]);
-    const [localEssay, setLocalEssay] = useState([])
+    const [completeEssays, setCompleteEssays] = useState([])
+    const [localEssay, setLocalEssay] = useState([]);
     const [essayRefresh, setEssayRefresh] = useState(false);
 
     useEffect(() => {
@@ -43,6 +45,11 @@ export const StudentDetail = () => {
     useEffect(() => {
         getEssaysByStudentId(studentId)
             .then(data => setLocalEssays(data))
+    }, [currentStudent, essayRefresh])
+
+    useEffect(() => {
+        getCompleteEssaysByStudentId(studentId)
+            .then(data => setCompleteEssays(data))
     }, [currentStudent, essayRefresh])
 
     const useStyles = makeStyles((theme) => ({
@@ -135,6 +142,47 @@ export const StudentDetail = () => {
                                     </Typography>
                                     <div className="student-detail__timeline_buttons_flex">
                                         {editEssayDialog(essay)}
+                                        {completeEssayButton(essay)}
+                                        {deleteEssayButton(essay)}
+                                    </div>
+                                </Paper>
+                            </TimelineContent>
+                        </TimelineItem>
+                    ))
+                }
+            </Timeline>
+        );
+    }
+
+    const CompleteEssaysTimeline = (essays) => {
+
+        return (
+            <Timeline align="alternate">
+                {
+                    essays.map(essay => (
+                        <TimelineItem>
+                            <TimelineOppositeContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
+                                    <br />
+                                    Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                </Typography>
+                            </TimelineOppositeContent>
+                            <TimelineSeparator>
+                                <TimelineDot color="secondary">
+                                    <AssignmentTurnedInIcon />
+                                </TimelineDot>
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <Paper elevation={3} className={classes.paper}>
+                                    <Typography variant="h6" component="h1">
+                                        {essay.topic}
+                                    </Typography>
+                                    <Typography>
+                                        {essay.notes}
+                                    </Typography>
+                                    <div className="student-detail__timeline_buttons_flex">
                                         {deleteEssayButton(essay)}
                                     </div>
                                 </Paper>
@@ -197,7 +245,7 @@ export const StudentDetail = () => {
                         <Button onClick={handleUpdateEssay} color="primary">
                             Save
                         </Button>
-                        <Button onClick={handleCloseEssayDialog} color="primary">
+                        <Button onClick={handleCloseEssayDialog} color="secondary">
                             Cancel
                         </Button>
                     </DialogActions>
@@ -237,7 +285,7 @@ export const StudentDetail = () => {
                         }} color="primary">
                             Save
                         </Button>
-                        <Button onClick={handleClose} color="primary">
+                        <Button onClick={handleClose} color="secondary">
                             Cancel
                         </Button>
                     </DialogActions>
@@ -248,7 +296,7 @@ export const StudentDetail = () => {
 
     const renderNoEssays = () => {
         return (
-            <div className="essay__no essays">No essays to display.</div>
+            <div className="essay__no_essays">No essays to display.</div>
         )
     }
 
@@ -256,7 +304,7 @@ export const StudentDetail = () => {
         return (
             <Button
                 variant="contained"
-                color="primary"
+                color="default"
                 size="small"
                 className={classes.button}
                 startIcon={<DeleteIcon />}
@@ -270,6 +318,37 @@ export const StudentDetail = () => {
                 }}
             >
                 Delete
+            </Button>
+        )
+    };
+
+    const completeEssayButton = essay => {
+        return (
+            <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                startIcon={<AssignmentTurnedInIcon />}
+                onClick={() => {
+                    updateEssay({
+                        "id": essay.id,
+                        "topic": essay.topic,
+                        "student": studentId,
+                        "official_dd": essay.official_dd,
+                        "floating_dd": essay.floating_dd,
+                        "notes": essay.notes,
+                        "is_complete": true
+                    })
+                    if (essayRefresh === false) {
+                        setEssayRefresh(true)
+                    } else {
+                        setEssayRefresh(false)
+                    }
+                    history.push(`/students/${studentId}`)
+                }}
+            >
+                Complete
             </Button>
         )
     };
@@ -307,8 +386,14 @@ export const StudentDetail = () => {
             </div>
             </Paper>
             <div className="student_detail__essays">
+                <div className="student_detail__upcoming_essays">
+                    Upcoming essays:
                 {
                     localEssays.length === 0 ? renderNoEssays() : LocalEssaysTimeline(localEssays)
+                }
+                </div>
+                {
+                    CompleteEssaysTimeline(completeEssays)
                 }
             </div>
         </main>
