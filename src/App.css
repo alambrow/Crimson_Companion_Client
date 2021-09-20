@@ -1,7 +1,12 @@
-main {
-  margin: 4rem 0rem 0rem 0rem;
-  justify-content: center;
+:root {
+  margin: 0;
   height: 100%;
+  background-color: lightgray;
+}
+
+main {
+  margin: 3.8rem 0rem 0rem 0rem;
+  background-color: lightgray;
 }
 
 abbr[title] {

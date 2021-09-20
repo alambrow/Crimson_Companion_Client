@@ -122,6 +122,12 @@ export const StudentDetail = () => {
         history.push(`/students/${studentId}`);
     }
 
+    const convertDateToString = (date) => {
+        let converted_date = new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+        console.log(converted_date)
+        return converted_date
+    }
+
     const LocalEssaysTimeline = (essays) => {
 
         return (
@@ -131,9 +137,11 @@ export const StudentDetail = () => {
                         <TimelineItem>
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
-                                    Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
+                                    Floating due date: {' '}
+                                    {convertDateToString(essay.floating_dd)}
                                     <br />
-                                    Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                    Official due date: {' '}
+                                    {convertDateToString(essay.official_dd)}
                                 </Typography>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
@@ -173,9 +181,8 @@ export const StudentDetail = () => {
                         <TimelineItem>
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
-                                    Floating due date: {essay.floating_dd.split("-")[1]}-{essay.floating_dd.split("-")[2]}
-                                    <br />
-                                    Official due date: {essay.official_dd.split("-")[1]}-{essay.official_dd.split("-")[2]}
+                                    Official due date: {' '}
+                                    {convertDateToString(essay.official_dd)}
                                 </Typography>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
