@@ -89,15 +89,15 @@ export const LandingSite = () => {
                         <TimelineItem>
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
-                                    <div className="timeline__floating_dd">
-                                        Floating due date:
-                                        {' '}
-                                        {convertDateToString(essay.floating_dd)}
-                                    </div>
                                     <div className="timeline__official_dd">
                                         Official due date: 
                                         {' '}
                                         {convertDateToString(essay.official_dd)}
+                                    </div>
+                                    <div className="timeline__floating_dd">
+                                        Floating due date:
+                                        {' '}
+                                        {convertDateToString(essay.floating_dd)}
                                     </div>
                                 </Typography>
                             </TimelineOppositeContent>

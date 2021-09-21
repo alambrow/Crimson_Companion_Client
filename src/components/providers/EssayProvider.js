@@ -13,7 +13,7 @@ export const EssayProvider = (props) => {
         })
             .then(res => res.json())
             .then(setEssays);
-    }
+    };
 
     const getEssayById = (essayId) => {
         return fetch(`http://127.0.0.1:8000/essays/${essayId}`, {
@@ -22,7 +22,7 @@ export const EssayProvider = (props) => {
             }
         })
             .then(res => res.json());
-    }
+    };
 
     const getUpcomingEssays = (dialInt) => {
         return fetch(`http://127.0.0.1:8000/essays?upcoming=${dialInt}`, {
@@ -31,7 +31,7 @@ export const EssayProvider = (props) => {
             }
         })
             .then(res => res.json());
-    }
+    };
 
     const getUpcomingEssaysInDateRange = (day) => {
         return fetch(`http://127.0.0.1:8000/essays?day=${day}`, {
@@ -40,7 +40,7 @@ export const EssayProvider = (props) => {
             }
         })
             .then(res => res.json());
-    }
+    };
 
     const getEssaysByStudentId = (studentId) => {
         return fetch(`http://127.0.0.1:8000/essays?student=${studentId}`, {
@@ -49,7 +49,7 @@ export const EssayProvider = (props) => {
             }
         })
             .then(res => res.json());
-    }
+    };
 
     const createEssay = (essay) => {
         return fetch("http://127.0.0.1:8000/essays", {
@@ -62,7 +62,7 @@ export const EssayProvider = (props) => {
         })
             .then(res => res.json())
             .then(getEssays);
-    }
+    };
 
     const deleteEssay = (essayId) => {
         return fetch(`http://127.0.0.1:8000/essays/${essayId}`, {
@@ -72,7 +72,7 @@ export const EssayProvider = (props) => {
             }
         })
             .then(getEssays);
-    }
+    };
 
     const updateEssay = (essay) => {
         return fetch(`http://127.0.0.1:8000/essays/${essay.id}`, {
@@ -84,7 +84,7 @@ export const EssayProvider = (props) => {
             body: JSON.stringify(essay)
         })
             .then(getEssays);
-    }
+    };
 
     const getCompleteEssaysByStudentId = (studentId) => {
         return fetch(`http://127.0.0.1:8000/essays?student=${studentId}&is_complete=True`, {
@@ -99,5 +99,5 @@ export const EssayProvider = (props) => {
         <EssayContext.Provider value={{ getEssays, essays, getEssayById, getEssaysByStudentId, createEssay, deleteEssay, updateEssay, getUpcomingEssays, getUpcomingEssaysInDateRange, getCompleteEssaysByStudentId }}>
             {props.children}
         </EssayContext.Provider>
-    )
-}
+    );
+};

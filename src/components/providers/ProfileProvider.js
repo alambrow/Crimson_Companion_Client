@@ -13,7 +13,7 @@ export const ProfileProvider = (props) => {
         })
             .then(response => response.json())
             .then(setProfile);
-    }
+    };
 
     return (
         <ProfileContext.Provider value={{ profile, getProfile }}>

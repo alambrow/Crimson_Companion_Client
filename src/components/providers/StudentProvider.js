@@ -13,7 +13,7 @@ export const StudentProvider = (props) => {
         })
             .then(res => res.json())
             .then(setStudents);
-    }
+    };
 
     const getStudentById = (studentId) => {
         return fetch(`http://127.0.0.1:8000/students/${studentId}`, {
@@ -22,7 +22,7 @@ export const StudentProvider = (props) => {
             }
         })
             .then(res => res.json());
-    }
+    };
 
     const createStudent = (student) => {
         return fetch("http://127.0.0.1:8000/students", {
@@ -35,7 +35,7 @@ export const StudentProvider = (props) => {
         })
             .then(res => res.json())
             .then(getStudents);
-    }
+    };
 
     const deleteStudent = (studentId) => {
         return fetch(`http://127.0.0.1:8000/students/${studentId}`, {
@@ -45,7 +45,7 @@ export const StudentProvider = (props) => {
             }
         })
             .then(getStudents);
-    }
+    };
 
     const updateStudent = (student) => {
         return fetch(`http://127.0.0.1:8000/students/${student.id}`, {
@@ -57,7 +57,7 @@ export const StudentProvider = (props) => {
             body: JSON.stringify(student)
         })
             .then(getStudents);
-    }
+    };
 
     return (
         <StudentContext.Provider value={{ students, getStudents, getStudentById, createStudent, deleteStudent, updateStudent }}>
