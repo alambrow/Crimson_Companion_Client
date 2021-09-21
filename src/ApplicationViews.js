@@ -11,7 +11,6 @@ import { AllEssays } from "./components/AllEssays";
 import { NewEssay } from "./components/NewEssay";
 
 export const ApplicationViews = () => {
-
     return (
         <>
             <ProfileProvider>
@@ -40,5 +39,5 @@ export const ApplicationViews = () => {
                 </StudentProvider>
             </ProfileProvider>
         </>
-    )
-}
+    );
+};

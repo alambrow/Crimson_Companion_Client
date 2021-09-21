@@ -36,7 +36,7 @@ export const LandingSite = () => {
     useEffect(() => {
         if (altDay) {
             getUpcomingEssaysInDateRange(altDay)
-                .then(data => setUpcomingEssays(data))
+                .then(data => setUpcomingEssays(data));
         }
     }, [altDay])
 
@@ -77,7 +77,7 @@ export const LandingSite = () => {
     const convertDateToString = (date) => {
         let converted_date = new Date(date).toLocaleDateString('en', {timeZone: 'UTC', month: 'long', day: 'numeric'});
         return converted_date;
-    }
+    };
 
     const classes = useStyles();
 

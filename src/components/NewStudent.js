@@ -34,9 +34,9 @@ export const NewStudent = () => {
     const classes = useStyles();
 
     const handleInputChange = (event) => {
-        const student = { ...newStudent }
-        student[event.target.name] = event.target.value
-        setNewStudent(student)
+        const student = { ...newStudent };
+        student[event.target.name] = event.target.value;
+        setNewStudent(student);
     };
 
     return (
@@ -82,6 +82,4 @@ export const NewStudent = () => {
             </div>
         </main>
     );
-}
-
-
+};

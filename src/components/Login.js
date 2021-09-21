@@ -21,12 +21,12 @@ export const Login = (props) => {
         } else {
           alert("Login failed.")
         }
-      })
-  }
+      });
+  };
 
   const responseGoogle_error = () => {
-    alert('Google could not verify your account.')
-  }
+    alert('Google could not verify your account.');
+  };
 
   return (
     <>
@@ -59,5 +59,5 @@ export const Login = (props) => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};

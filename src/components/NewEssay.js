@@ -15,7 +15,7 @@ import './styles/new_essay.css';
 
 export const NewEssay = () => {
     const { createEssay } = useContext(EssayContext);
-    const { students, getStudents } = useContext(StudentContext)
+    const { students, getStudents } = useContext(StudentContext);
     const history = useHistory();
 
     const [newEssay, setNewEssay] = useState({
@@ -63,11 +63,10 @@ export const NewEssay = () => {
     const classes = useStyles();
 
     const handleInputChange = (event) => {
-        const essay = { ...newEssay }
-        essay[event.target.name] = event.target.value
-        console.log(essay)
-        setNewEssay(essay)
-    }
+        const essay = { ...newEssay };
+        essay[event.target.name] = event.target.value;
+        setNewEssay(essay);
+    };
 
     return (
         <main>
@@ -150,4 +149,4 @@ export const NewEssay = () => {
             </div>
         </main>
     );
-}
+};
