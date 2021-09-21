@@ -91,12 +91,11 @@ export const NavBar = () => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
-    const { students, getStudents } = useContext(StudentContext)
+    const { students, getStudents } = useContext(StudentContext);
 
     useEffect(() => {
-        getStudents()
-        console.log(students)
-    }, [])
+        getStudents();
+    }, []);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -106,7 +105,7 @@ export const NavBar = () => {
         setOpen(false);
     };
 
-    const history = useHistory()
+    const history = useHistory();
 
     return (
         <div className={classes.root}>
@@ -219,4 +218,4 @@ export const NavBar = () => {
             </Drawer>
         </div>
     );
-}
+};

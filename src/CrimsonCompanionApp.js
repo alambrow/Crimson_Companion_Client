@@ -1,8 +1,7 @@
-import './App.css';
 import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from './ApplicationViews';
 import { Login } from './components/Login';
-import { NavBar } from './components/NavBar';
+import './App.css';
 
 
 const CrimsonCompanionApp = () => (
@@ -21,6 +20,6 @@ const CrimsonCompanionApp = () => (
         <Route path="/login" render={Login} />
         
   </>
-)
+);
 
 export default CrimsonCompanionApp

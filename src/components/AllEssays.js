@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const AllEssays = () => {
-    const { essays, getEssays } = useContext(EssayContext)
+    const { essays, getEssays } = useContext(EssayContext);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -57,11 +57,11 @@ export const AllEssays = () => {
     const convertDateToString = (date) => {
         let converted_date = new Date(date).toLocaleDateString('en', { timeZone: 'UTC', month: 'long', day: 'numeric' });
         return converted_date;
-    }
+    };
 
     const classes = useStyles();
-    const EssayTimeline = (essays) => {
 
+    const EssayTimeline = (essays) => {
         return (
             <Timeline align="alternate">
                 {
@@ -101,7 +101,7 @@ export const AllEssays = () => {
                 }
             </Timeline>
         );
-    }
+    };
 
     return (
         <>
@@ -116,5 +116,5 @@ export const AllEssays = () => {
                 </div>
             </main>
         </>
-    )
-}
+    );
+};

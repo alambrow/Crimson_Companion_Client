@@ -8,7 +8,7 @@ export const AllStudents = () => {
     const { students, getStudents } = useContext(StudentContext);
 
     useEffect(() => {
-        getStudents()
+        getStudents();
     }, [])
 
 
@@ -40,8 +40,8 @@ export const AllStudents = () => {
                     </div>
                 </div>
             </Paper>
-        )
-    }
+        );
+    };
 
     return (
         <>
@@ -56,5 +56,5 @@ export const AllStudents = () => {
                 </div>
             </main>
         </>
-    )
-}
+    );
+};

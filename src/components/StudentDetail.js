@@ -34,24 +34,24 @@ export const StudentDetail = () => {
     const [open, setOpen] = useState(false);
     const [essayEditOpen, setEssayEditOpen] = useState(false);
     const [localEssays, setLocalEssays] = useState([]);
-    const [completeEssays, setCompleteEssays] = useState([])
+    const [completeEssays, setCompleteEssays] = useState([]);
     const [localEssay, setLocalEssay] = useState([]);
     const [essayRefresh, setEssayRefresh] = useState(false);
 
     useEffect(() => {
         getStudentById(studentId)
             .then(data => setCurrentStudent(data));
-    }, [studentId])
+    }, [studentId]);
 
     useEffect(() => {
         getEssaysByStudentId(studentId)
-            .then(data => setLocalEssays(data))
-    }, [currentStudent, essayRefresh])
+            .then(data => setLocalEssays(data));
+    }, [currentStudent, essayRefresh]);
 
     useEffect(() => {
         getCompleteEssaysByStudentId(studentId)
-            .then(data => setCompleteEssays(data))
-    }, [currentStudent, essayRefresh])
+            .then(data => setCompleteEssays(data));
+    }, [currentStudent, essayRefresh]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -107,7 +107,6 @@ export const StudentDetail = () => {
         const essay = { ...localEssay };
         essay[event.target.name] = event.target.value;
         essay['student'] = parseInt(studentId);
-        console.log(essay);
         setLocalEssay(essay);
     };
 
@@ -268,7 +267,6 @@ export const StudentDetail = () => {
     };
 
     const editDialog = () => {
-
         return (
             <div>
                 <Button

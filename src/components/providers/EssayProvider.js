@@ -71,6 +71,7 @@ export const EssayProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("crimson_token")}`
             }
         })
+            .then(getEssays);
     }
 
     const updateEssay = (essay) => {
