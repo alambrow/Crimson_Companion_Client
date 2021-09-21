@@ -16,8 +16,10 @@
 
 .timeline__floating_dd {
     color: royalblue;
+    font-weight: 450;
 }
 
 .timeline__official_dd {
     color: rgb(255, 61, 47);
+    font-weight: 550;
 }
