@@ -37,6 +37,8 @@ export const StudentDetail = () => {
     const [completeEssays, setCompleteEssays] = useState([]);
     const [localEssay, setLocalEssay] = useState([]);
     const [essayRefresh, setEssayRefresh] = useState(false);
+    const [incompleteCount, setIncompleteCount] = useState(0);
+    const [completeCount, setCompleteCount] = useState(0);
 
     useEffect(() => {
         getStudentById(studentId)
@@ -52,6 +54,18 @@ export const StudentDetail = () => {
         getCompleteEssaysByStudentId(studentId)
             .then(data => setCompleteEssays(data));
     }, [currentStudent, essayRefresh]);
+
+    useEffect(() => {
+        const count = localEssays.length;
+        setIncompleteCount(count);
+        console.log(incompleteCount);
+    }, [localEssays]);
+
+    useEffect(() => {
+        const count = completeEssays.length;
+        setCompleteCount(count);
+        console.log(completeCount)
+    }, [completeEssays]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
