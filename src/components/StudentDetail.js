@@ -152,7 +152,9 @@ export const StudentDetail = () => {
                             fontSize: 0,
                         },
                         tooltip: false,
+                        legend: {
 
+                        }
                     }}
                 />
             </Paper>
