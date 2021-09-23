@@ -79,9 +79,10 @@ export const StudentDetail = () => {
             margin: '1rem 1rem'
         },
         chartPaper: {
-            padding: '2rem',
-            width: '24rem',
-            margin: '2rem auto'
+            padding: '2rem 0rem',
+            width: '19rem',
+            margin: '2rem auto',
+
         }
     }));
 
@@ -151,10 +152,7 @@ export const StudentDetail = () => {
                         title: {
                             fontSize: 0,
                         },
-                        tooltip: false,
-                        legend: {
-
-                        }
+                        tooltip: false
                     }}
                 />
             </Paper>
