@@ -42,7 +42,7 @@ export const Login = (props) => {
 
             <div className="login__bottom_flex">
               <div className="login__logo">
-                <img src={CrimsonIcon} justify-content="center" width="100" height="100" />
+                <img src={CrimsonIcon} justify-content="center" width="100" height="100" alt="Crimson Companion App" />
               </div>
               <div className="login__button">
                 <GoogleLogin
