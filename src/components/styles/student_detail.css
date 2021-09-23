@@ -47,3 +47,7 @@
     padding: 1.5rem;
     font-size: large;
 }
+
+.tui-chart-chartExportMenu-area {
+    display: none;
+}

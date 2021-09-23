@@ -23,6 +23,7 @@ import AssignmentTurnedInIcon from '@material-ui/icons/Assignment';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Donut from 'react-donut';
 import './styles/student_detail.css';
 
 export const StudentDetail = () => {
@@ -37,8 +38,6 @@ export const StudentDetail = () => {
     const [completeEssays, setCompleteEssays] = useState([]);
     const [localEssay, setLocalEssay] = useState([]);
     const [essayRefresh, setEssayRefresh] = useState(false);
-    const [incompleteCount, setIncompleteCount] = useState(0);
-    const [completeCount, setCompleteCount] = useState(0);
 
     useEffect(() => {
         getStudentById(studentId)
@@ -54,18 +53,6 @@ export const StudentDetail = () => {
         getCompleteEssaysByStudentId(studentId)
             .then(data => setCompleteEssays(data));
     }, [currentStudent, essayRefresh]);
-
-    useEffect(() => {
-        const count = localEssays.length;
-        setIncompleteCount(count);
-        console.log(incompleteCount);
-    }, [localEssays]);
-
-    useEffect(() => {
-        const count = completeEssays.length;
-        setCompleteCount(count);
-        console.log(completeCount)
-    }, [completeEssays]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -87,9 +74,14 @@ export const StudentDetail = () => {
         secondaryTail: {
             backgroundColor: theme.palette.secondary.main,
         },
-        fullPapePaper: {
+        fullPagePaper: {
             padding: '6px 16px',
             margin: '1rem 1rem'
+        },
+        chartPaper: {
+            padding: '2rem',
+            width: '24rem',
+            margin: '2rem auto'
         }
     }));
 
@@ -139,6 +131,33 @@ export const StudentDetail = () => {
         let converted_date = new Date(date).toLocaleDateString('en', { timeZone: 'UTC', month: 'long', day: 'numeric' });
         return converted_date;
     }
+
+    const DonutChart = () => {
+        const dataArray = [
+            { name: `Complete`, data: completeEssays.length },
+            { name: `Incomplete`, data: localEssays.length },
+        ];
+        return (
+            <Paper elevation={3} className={classes.chartPaper}>
+                <Donut
+                    chartData={dataArray}
+                    showChartLabel={false}
+                    chartWidth={300}
+                    chartHeight={300}
+                    chartThemeConfig={{
+                        series: {
+                            colors: ['#3f51b5', '#f50057' ],
+                        },
+                        title: {
+                            fontSize: 0,
+                        },
+                        tooltip: false,
+
+                    }}
+                />
+            </Paper>
+        );
+    };
 
     const LocalEssaysTimeline = (essays) => {
         return (
@@ -420,7 +439,8 @@ export const StudentDetail = () => {
                     </div>
                 </div>
             </Paper>
-            <Paper elevation={3} className={classes.fullPapePaper}>
+            <DonutChart />
+            <Paper elevation={3} className={classes.fullPagePaper}>
                 <div className="student_detail__essays">
                     <div className="student_detail__upcoming_essays">
                         {
