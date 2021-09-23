@@ -138,25 +138,32 @@ export const StudentDetail = () => {
             { name: `Complete`, data: completeEssays.length },
             { name: `Incomplete`, data: localEssays.length },
         ];
-        return (
-            <Paper elevation={3} className={classes.chartPaper}>
-                <Donut
-                    chartData={dataArray}
-                    showChartLabel={false}
-                    chartWidth={300}
-                    chartHeight={300}
-                    chartThemeConfig={{
-                        series: {
-                            colors: ['#3f51b5', '#f50057' ],
-                        },
-                        title: {
-                            fontSize: 0,
-                        },
-                        tooltip: false
-                    }}
-                />
-            </Paper>
-        );
+
+        if (dataArray[0].data || dataArray[1].data) {
+            return (
+                <Paper elevation={3} className={classes.chartPaper}>
+                    <Donut
+                        chartData={dataArray}
+                        showChartLabel={false}
+                        chartWidth={300}
+                        chartHeight={300}
+                        chartThemeConfig={{
+                            series: {
+                                colors: ['#3f51b5', '#f50057' ],
+                            },
+                            title: {
+                                fontSize: 0,
+                            },
+                            tooltip: false
+                        }}
+                    />
+                </Paper>
+            );
+        } else {
+            return (
+                <></>
+            )
+        }
     };
 
     const LocalEssaysTimeline = (essays) => {
