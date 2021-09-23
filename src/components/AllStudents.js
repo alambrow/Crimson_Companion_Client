@@ -14,7 +14,8 @@ export const AllStudents = () => {
 
     const useStyles = makeStyles((theme) => ({
         paper: {
-            padding: '6px 16px',
+            padding: '1rem 1rem',
+            margin: '1rem 4rem 0rem 2rem',
         },
         bannerPaper: {
             padding: '1rem',
@@ -26,7 +27,7 @@ export const AllStudents = () => {
 
     const renderStudentItem = student => {
         return (
-            <Paper elevation={3} className={classes.bannerPaper}>
+            <Paper elevation={3} className={classes.paper}>
                 <div className="student_item">
                     <div className="student_item__name">
                         {student.full_name}

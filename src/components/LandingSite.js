@@ -60,8 +60,8 @@ export const LandingSite = () => {
         },
         calPaper: {
             padding: '0px',
-            width: '25rem',
-            margin: '0rem 0rem 0rem 4rem'
+            width: '35rem',
+            margin: '0rem 4rem 0rem 4rem'
         },
         secondaryTail: {
             backgroundColor: theme.palette.secondary.main,
@@ -89,15 +89,15 @@ export const LandingSite = () => {
                         <TimelineItem>
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
-                                    <div className="timeline__official_dd">
-                                        Official due date: 
-                                        {' '}
-                                        {convertDateToString(essay.official_dd)}
-                                    </div>
                                     <div className="timeline__floating_dd">
                                         Floating due date:
                                         {' '}
                                         {convertDateToString(essay.floating_dd)}
+                                    </div>
+                                    <div className="timeline__official_dd">
+                                        Official due date: 
+                                        {' '}
+                                        {convertDateToString(essay.official_dd)}
                                     </div>
                                 </Typography>
                             </TimelineOppositeContent>
